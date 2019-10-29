@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="data_generator.js"></script>
+		<script src="jquery.js"></script>
+	</head>
+	<style>
+		body{
+			background-color: white;
+			color: black;
+		}
+		header{
+			font-family: sans-serif;
+			font-size: 50px;
+			color: white;
+			background-color: #1da1f2;
+			
+		}
+		 #btn{
+			background-color: rgb(34,36,50);
+			color: white;
+			height:50px;
+			width: 20%;
+			border: 2px solid #1da1f2;
+		}
+	
+	 
+	</style>
+	<body>
+		
+		<center><header>  Twittler <hr></header>
+		
+	 <button id="btn">Click to View Updates</button>
+	 <br>
+	 <br>
+	 <input type="text" id="input">
+	 <button id="user">Search by username</button>
+
+	 <hr>
+</center>
+
+		<script>
+		
+				$("button#user").on("click",function(event){
+				var $body = $('body');
+		
+				var index = streams.home.length - 1;
+				while(index >= 0){
+					var tweet = streams.home[index];
+					var $tweet = $('<center><div></div></center>');
+					var x = $('input#input').val()
+					if(tweet.user === x){
+
+					$tweet.text('@' + tweet.user + ': ' + tweet.message +' and the time is : ' + Date());}
+					$tweet.appendTo($body);
+				
+					index -= 1;
+				}
+
+			});
+
+ 
+		$("button#btn").on("click",function(event){
+				var $body = $('body');
+		
+				var index = streams.home.length - 1;
+				while(index >= 0){
+					var tweet = streams.home[index];
+					var $tweet = $('<center><div></div></center>');
+					
+					$tweet.text('@' + tweet.user + ': ' + tweet.message +' and the time is : ' + Date());
+					$tweet.appendTo($body);
+				
+					index -= 1;
+				}
+
+			});
+ 
+		</script>
+	</body>
+</html>
+
