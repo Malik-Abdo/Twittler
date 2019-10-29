@@ -3,6 +3,7 @@
 	<head>
 		<script src="data_generator.js"></script>
 		<script src="jquery.js"></script>
+		<script src="https://momentjs.com/downloads/moment.min.js"></script>
 	</head>
 	<style>
 		body{
@@ -35,12 +36,40 @@
 	 <br>
 	 <input type="text" id="input">
 	 <button id="user">Search by username</button>
-
+	 <br>
+	 <br>
+	 <input type="text" id="tweeter" placeholder="username">
+     <input type="text" id="tweet" placeholder="tweet">
+	 <button id="tweetup">write your tweet</button>
 	 <hr>
 </center>
 
 		<script>
+		    
+
+                $("button#tweetup").on("click",function(event){
+				var $body = $('body');
 		
+				var index = 0;
+				while(index >= 0){
+					var tweeter = $('input#tweeter').val();
+			        var Newtweet = $('input#tweet').val();
+                    var $tweet = $('<center><div></div></center>');
+					 $tweet.html('@'+ '<a href="#">' +tweeter+ '</a>'+ ': ' + Newtweet +' and the time is : ' + moment().format('LTS')) ;
+					var x = $('input#input').val()
+					
+					$tweet.appendTo($body);
+				
+					index -= 1;
+				}
+
+			});
+
+
+//<A HREF="otherpage.htm?data=1234#blah">Good Stuff!</A>
+
+
+//////////////////////////////////////////////////////////////////
 				$("button#user").on("click",function(event){
 				var $body = $('body');
 		
@@ -50,8 +79,7 @@
 					var $tweet = $('<center><div></div></center>');
 					var x = $('input#input').val()
 					if(tweet.user === x){
-
-					$tweet.text('@' + tweet.user + ': ' + tweet.message +' and the time is : ' + Date());}
+					$tweet.html('@'+ '<a href="#">' + tweet.user + '</a>'+ ': ' + tweet.message +' and the time is : ' + moment().format('LTS'));}
 					$tweet.appendTo($body);
 				
 					index -= 1;
@@ -68,7 +96,7 @@
 					var tweet = streams.home[index];
 					var $tweet = $('<center><div></div></center>');
 					
-					$tweet.text('@' + tweet.user + ': ' + tweet.message +' and the time is : ' + Date());
+					$tweet.html('@'+ '<a href="#">' + tweet.user + '</a>'+ ': ' + tweet.message +' and the time is : ' + moment().format('LTS'));
 					$tweet.appendTo($body);
 				
 					index -= 1;
@@ -76,6 +104,10 @@
 
 			});
  
+
+
+
+
 		</script>
 	</body>
 </html>
